@@ -1,40 +1,41 @@
 import Link from "next/link";
-import { Music2 } from "lucide-react";
+import { siteConfig } from "@/lib/siteConfig";
 
-const navItems = [
-  { href: "/practice/ear-training", label: "Ear Training" },
-  { href: "/practice/theory", label: "Theory" },
-  { href: "/practice/sight-reading", label: "Sight-Reading" },
-  { href: "/staff-lab", label: "Staff Lab" },
-  { href: "/teacher", label: "Teacher" },
-];
-
-export default function SiteHeader() {
+export default function SiteFooter() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/85 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500">
-            <Music2 className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-xl font-semibold tracking-tight">Audvyn</span>
-        </Link>
+    <footer className="border-t border-white/10 bg-zinc-950">
+      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 text-sm text-zinc-400 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p>© {new Date().getFullYear()} Audvyn. Free classroom music tools.</p>
+          <p className="mt-2 max-w-xl leading-6 text-zinc-500">
+            Audvyn is a student-built beta platform for music classrooms.
+            Features may change as teachers and students test the app.
+          </p>
+        </div>
 
-        <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-white">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <Link
-          href="/login"
-          className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-100 hover:bg-white/10"
-        >
-          Log in
-        </Link>
+        <div className="flex flex-wrap gap-5">
+          <Link href="/about" className="hover:text-white">
+            About
+          </Link>
+          <Link href="/privacy" className="hover:text-white">
+            Privacy
+          </Link>
+          <Link href="/teacher-guide" className="hover:text-white">
+            Teacher Guide
+          </Link>
+          <Link href="/student-guide" className="hover:text-white">
+            Student Guide
+          </Link>
+          <a
+            href={siteConfig.feedbackUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-white"
+          >
+            Feedback
+          </a>
+        </div>
       </div>
-    </header>
+    </footer>
   );
 }
