@@ -29,7 +29,10 @@ const assignmentTypes: {
 
 const modesByType: Record<AssignmentType, { value: string; label: string }[]> = {
   ear_training: [
+    { value: "pitch", label: "Pitch" },
+    { value: "keyboard", label: "Keyboard" },
     { value: "interval", label: "Intervals" },
+    { value: "scale", label: "Scales" },
     { value: "chord", label: "Chords" },
     { value: "cadence", label: "Cadences" },
   ],

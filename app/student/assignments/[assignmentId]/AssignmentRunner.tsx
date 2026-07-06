@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import * as Tone from "tone";
+import StaffChoice from "@/components/StaffChoice";
 import { createClient } from "@/lib/supabase/client";
 import {
   EarTrainingMode,
@@ -33,7 +34,9 @@ type AnswerRecord = {
   correct: boolean;
 };
 
-function generateAssignmentQuestions(assignment: Assignment): AssignmentQuestion[] {
+function generateAssignmentQuestions(
+  assignment: Assignment
+): AssignmentQuestion[] {
   const questions: AssignmentQuestion[] = [];
 
   for (let i = 0; i < assignment.question_count; i++) {
@@ -55,30 +58,48 @@ function generateAssignmentQuestions(assignment: Assignment): AssignmentQuestion
   return questions;
 }
 
+function getPlaybackSpacing(question: EarTrainingQuestion) {
+  if (question.playbackStyle === "progression") return 1.1;
+  if (question.playbackStyle === "single") return 0;
+  if (question.playbackStyle === "reference") return 0.9;
+  if (question.playbackStyle === "scale-ascending") return 0.42;
+  if (question.playbackStyle === "scale-descending") return 0.42;
+  if (question.playbackStyle === "arpeggiated") return 0.55;
+  return 0.85;
+}
+
 async function playEarQuestion(question: EarTrainingQuestion) {
   await Tone.start();
 
   const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-      type: "triangle",
-    },
+    oscillator: { type: "triangle" },
     envelope: {
       attack: 0.02,
       decay: 0.2,
-      sustain: 0.4,
+      sustain: 0.45,
       release: 0.7,
     },
   }).toDestination();
 
   const now = Tone.now();
+  const spacing = getPlaybackSpacing(question);
 
   question.notes.forEach((noteGroup, index) => {
-    synth.triggerAttackRelease(noteGroup, "2n", now + index * 0.9);
+    const duration =
+      question.playbackStyle === "progression"
+        ? "2n"
+        : question.playbackStyle === "blocked"
+          ? "2n"
+          : question.playbackStyle === "single"
+            ? "2n"
+            : "4n";
+
+    synth.triggerAttackRelease(noteGroup, duration, now + index * spacing);
   });
 
   setTimeout(() => {
     synth.dispose();
-  }, question.notes.length * 1000 + 1500);
+  }, Math.max(1800, question.notes.length * 900 + 1400));
 }
 
 function getAssignmentTypeLabel(type: string) {
@@ -89,7 +110,10 @@ function getAssignmentTypeLabel(type: string) {
 
 function getModeLabel(mode: string) {
   const labels: Record<string, string> = {
+    pitch: "Pitch",
+    keyboard: "Keyboard",
     interval: "Intervals",
+    scale: "Scales",
     chord: "Chords",
     cadence: "Cadences",
     notes: "Notes",
@@ -299,12 +323,6 @@ export default function AssignmentRunner({
         <p className="mt-4 text-zinc-400">
           Please log in as a student to complete this assignment.
         </p>
-        <Link
-          href="/login"
-          className="mt-8 inline-flex rounded-full bg-violet-500 px-6 py-3 font-medium text-white hover:bg-violet-400"
-        >
-          Log in
-        </Link>
       </section>
     );
   }
@@ -329,14 +347,8 @@ export default function AssignmentRunner({
           Assignment unavailable
         </h1>
         <p className="mt-4 text-zinc-400">
-          This assignment could not be loaded. It may not exist or you may not
-          have access to it.
+          This assignment could not be loaded.
         </p>
-        {message && (
-          <p className="mt-4 rounded-2xl border border-yellow-400/40 bg-yellow-500/10 p-4 text-yellow-100">
-            {message}
-          </p>
-        )}
       </section>
     );
   }
@@ -344,7 +356,9 @@ export default function AssignmentRunner({
   if (finished) {
     return (
       <section className="mx-auto max-w-5xl px-5 py-16">
-        <p className="text-sm font-medium text-violet-300">Assignment complete</p>
+        <p className="text-sm font-medium text-violet-300">
+          Assignment complete
+        </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight">
           {assignment.title}
         </h1>
@@ -376,6 +390,8 @@ export default function AssignmentRunner({
       </section>
     );
   }
+
+  const isEarTraining = currentQuestion.kind === "ear_training";
 
   return (
     <section className="mx-auto max-w-5xl px-5 py-16">
@@ -420,9 +436,16 @@ export default function AssignmentRunner({
               Choose the best answer. You will see an explanation after
               answering.
             </p>
+
+            {isEarTraining && (
+              <p className="mt-2 text-sm text-zinc-500">
+                Playback:{" "}
+                {currentQuestion.question.playbackStyle.replaceAll("-", " ")}
+              </p>
+            )}
           </div>
 
-          {currentQuestion.kind === "ear_training" && (
+          {isEarTraining && (
             <button
               onClick={() => playEarQuestion(currentQuestion.question)}
               className="rounded-full bg-violet-500 px-5 py-3 font-medium text-white hover:bg-violet-400"
@@ -436,7 +459,8 @@ export default function AssignmentRunner({
           {rawQuestion.choices.map((choice) => {
             const chosen = selected === choice;
             const correctChoice = answered && choice === rawQuestion.answer;
-            const wrongChoice = answered && chosen && choice !== rawQuestion.answer;
+            const wrongChoice =
+              answered && chosen && choice !== rawQuestion.answer;
 
             return (
               <button
@@ -463,12 +487,28 @@ export default function AssignmentRunner({
                 isCorrect ? "text-emerald-300" : "text-red-300"
               }`}
             >
-              {isCorrect ? "Correct." : `Not quite. Answer: ${rawQuestion.answer}`}
+              {isCorrect
+                ? "Correct."
+                : `Not quite. Answer: ${rawQuestion.answer}`}
             </p>
 
             <p className="mt-3 leading-8 text-zinc-300">
               {rawQuestion.explanation}
             </p>
+
+            {isEarTraining &&
+              currentQuestion.question.staffAnswerNotes &&
+              currentQuestion.question.staffAnswerNotes.length > 0 && (
+                <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="mb-3 text-sm text-zinc-400">Answer staff</p>
+                  <StaffChoice
+                    notes={currentQuestion.question.staffAnswerNotes}
+                    clef={currentQuestion.question.clef ?? "treble"}
+                    width={360}
+                    height={125}
+                  />
+                </div>
+              )}
 
             <button
               onClick={nextQuestion}
@@ -483,15 +523,6 @@ export default function AssignmentRunner({
             </button>
           </div>
         )}
-      </div>
-
-      <div className="mt-6 rounded-full border border-white/10 bg-white/[0.03] p-2">
-        <div
-          className="h-2 rounded-full bg-violet-500 transition-all"
-          style={{
-            width: `${((currentIndex + (answered ? 1 : 0)) / questions.length) * 100}%`,
-          }}
-        />
       </div>
     </section>
   );

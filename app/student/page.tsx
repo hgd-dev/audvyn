@@ -202,6 +202,7 @@ export default function StudentPage() {
 
   function getModeLabel(mode: string) {
     const labels: Record<string, string> = {
+      pitch: "Pitch Perfect",
       interval: "Intervals",
       chord: "Chords",
       cadence: "Cadences",
