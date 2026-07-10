@@ -9,7 +9,7 @@ import type { Profile } from "@/types/database";
 const navItems = [
   { href: "/practice/ear-training", label: "Ear Training" },
   { href: "/practice/theory", label: "Theory" },
-  { href: "/practice/sight-reading", label: "Sight-Reading" },
+  { href: "/practice/sight-reading", label: "Sightreading" },
   { href: "/staff-lab", label: "Staff Lab" },
 ];
 

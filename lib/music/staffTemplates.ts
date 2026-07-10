@@ -7,7 +7,7 @@ export type StaffTemplate = {
   id: string;
   title: string;
   description: string;
-  clef: "treble" | "bass";
+  clef: "treble" | "bass" | "alto" | "tenor";
   timeSignature: string;
   keySignature: string;
   tempo: number;

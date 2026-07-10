@@ -740,7 +740,7 @@ export default function TeacherAssignmentsPage() {
                             {(
                               Object.entries(
                                 earTrainingOptionLists.scaleGroups,
-                              ) as [string, string[]][]
+                              ) as [string, readonly string[]][]
                             ).map(([group, items]) => (
                               <label
                                 key={group}
@@ -755,7 +755,7 @@ export default function TeacherAssignmentsPage() {
                                   )}
                                   onChange={(event) =>
                                     setGroupedEarScale(
-                                      items,
+                                      [...items],
                                       event.target.checked,
                                     )
                                   }
@@ -932,7 +932,7 @@ export default function TeacherAssignmentsPage() {
                             {(
                               Object.entries(theoryOptionLists.scaleGroups) as [
                                 string,
-                                string[],
+                                readonly string[],
                               ][]
                             ).map(([group, items]) => (
                               <label
@@ -1004,7 +1004,7 @@ export default function TeacherAssignmentsPage() {
                             {(
                               Object.entries(theoryOptionLists.chordGroups) as [
                                 string,
-                                string[],
+                                readonly string[],
                               ][]
                             ).map(([group, items]) => (
                               <label
