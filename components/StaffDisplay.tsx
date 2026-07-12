@@ -63,6 +63,7 @@ type StaffDisplayTemplate = {
 
 type StaffDisplayProps = {
   template: StaffDisplayTemplate;
+  compact?: boolean;
 };
 
 function pitchToVexKey(pitch: string) {
@@ -159,7 +160,7 @@ function beatUnit(timeSignature?: string) {
   return timeSignature === "6/8" ? 1.5 : 1;
 }
 
-function groupByMeasure(notes: DisplayNote[], timeSignature?: string) {
+function groupByMeasure(notes: DisplayNote[], timeSignature?: string, targetMeasures = 1) {
   const explicit = notes.some((note) => typeof note.measureNumber === "number");
 
   if (explicit) {
@@ -170,12 +171,11 @@ function groupByMeasure(notes: DisplayNote[], timeSignature?: string) {
       groups.set(measure, [...(groups.get(measure) ?? []), note]);
     });
 
-    return Array.from(groups.entries())
-      .sort(([a], [b]) => a - b)
-      .map(([measureNumber, measureNotes]) => ({
-        measureNumber,
-        notes: measureNotes,
-      }));
+    const maxMeasure = Math.max(targetMeasures, ...Array.from(groups.keys()));
+    return Array.from({ length: maxMeasure }, (_, index) => {
+      const measureNumber = index + 1;
+      return { measureNumber, notes: groups.get(measureNumber) ?? [] };
+    });
   }
 
   const beatsPerMeasure = timeSignatureBeats(timeSignature);
@@ -206,7 +206,18 @@ function groupByMeasure(notes: DisplayNote[], timeSignature?: string) {
     measures.push(current);
   }
 
-  return measures.length > 0 ? measures : [{ measureNumber: 1, notes: [] }];
+  if (measures.length === 0) {
+    return Array.from({ length: Math.max(1, targetMeasures) }, (_, index) => ({
+      measureNumber: index + 1,
+      notes: [] as DisplayNote[],
+    }));
+  }
+
+  while (measures.length < targetMeasures) {
+    measures.push({ measureNumber: measures.length + 1, notes: [] });
+  }
+
+  return measures;
 }
 
 function nearlyEqual(a: number, b: number) {
@@ -495,7 +506,7 @@ function buildBeamGroups(renderNotes: RenderNote[], vexNotes: StaveNote[], timeS
   return groups.map((group) => new Beam(group));
 }
 
-export default function StaffDisplay({ template }: StaffDisplayProps) {
+export default function StaffDisplay({ template, compact = false }: StaffDisplayProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -504,17 +515,17 @@ export default function StaffDisplay({ template }: StaffDisplayProps) {
     const container = containerRef.current;
     container.innerHTML = "";
 
-    const rawMeasures = groupByMeasure(template.notes, template.timeSignature);
+    const rawMeasures = groupByMeasure(template.notes, template.timeSignature, template.settings?.measures ?? 1);
     const clef = template.clef || "treble";
     const parentWidth = container.parentElement?.clientWidth ?? 960;
-    const width = Math.max(640, Math.min(1440, parentWidth - 24));
-    const leftPadding = 18;
+    const width = Math.max(720, Math.min(1800, parentWidth - 24));
+    const leftPadding = compact ? 18 : 18;
     const rightPadding = 36;
     const usableWidth = width - leftPadding - rightPadding;
     const prepared = prepareMeasures(rawMeasures, template.timeSignature);
     const systems = makeSystems(prepared, usableWidth);
-    const systemHeight = 136;
-    const height = Math.max(156, systems.length * systemHeight + 20);
+    const systemHeight = compact ? 82 : 136;
+    const height = Math.max(compact ? 92 : 156, systems.length * systemHeight + (compact ? 2 : 20));
 
     const renderer = new Renderer(container, Renderer.Backends.SVG);
     renderer.resize(width, height);
@@ -522,7 +533,7 @@ export default function StaffDisplay({ template }: StaffDisplayProps) {
     const context = renderer.getContext();
 
     systems.forEach((systemMeasures, systemIndex) => {
-      const y = 38 + systemIndex * systemHeight;
+      const y = (compact ? 10 : 38) + systemIndex * systemHeight;
       let x = leftPadding;
 
       systemMeasures.forEach((measure, measureIndex) => {
@@ -550,7 +561,7 @@ export default function StaffDisplay({ template }: StaffDisplayProps) {
         stave.setContext(context).draw();
 
         context.setFont("Arial", 9, "");
-        context.fillText(String(measure.measureNumber), x + 4, y + 24);
+        context.fillText(String(measure.measureNumber), x + 4, y + (compact ? 18 : 24));
 
         if (measure.renderNotes.length > 0) {
           const vexNotes = measure.renderNotes.map((note) => createStaveNote(note, clef));
@@ -600,7 +611,7 @@ export default function StaffDisplay({ template }: StaffDisplayProps) {
   }, [template]);
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-white p-4">
+    <div className={compact ? "bg-white px-2 py-0" : "rounded-3xl border border-white/10 bg-white p-4"}>
       <div ref={containerRef} className="w-full" />
     </div>
   );
