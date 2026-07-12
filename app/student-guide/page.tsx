@@ -7,7 +7,7 @@ export default function StudentGuidePage() {
       </h1>
 
       <p className="mt-5 max-w-3xl leading-8 text-zinc-300">
-        Audvyn helps you practice music theory, ear training, sight-reading, and
+        OpenTutti helps you practice music theory, ear training, sight-reading, and
         staff-based music skills. You can practice freely or complete
         assignments from a teacher.
       </p>
@@ -16,7 +16,7 @@ export default function StudentGuidePage() {
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-2xl font-semibold">1. Create a student account</h2>
           <p className="mt-3 leading-8 text-zinc-400">
-            Go to the login page, choose “Sign up,” select “Student,” and create
+            Open the Sign up page, select “Student,” and create
             your account. You can use your first name, initials, or a classroom
             nickname if your teacher allows it.
           </p>
@@ -43,7 +43,7 @@ export default function StudentGuidePage() {
           <h2 className="text-2xl font-semibold">4. Practice freely</h2>
           <p className="mt-3 leading-8 text-zinc-400">
             You can also use the Ear Training Gym, Theory Tester, Sight-Reading
-            Coach, and Staff Lab outside of assignments.
+            Coach, and OTLab outside of assignments.
           </p>
         </section>
 

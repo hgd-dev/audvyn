@@ -32,7 +32,7 @@ const features = [
     icon: <Music className="h-6 w-6" />,
   },
   {
-    title: "Staff Lab",
+    title: "OTLab",
     description:
       "Use simple staff-based templates for scales, intervals, chords, cadences, rhythm, and classroom demonstrations.",
     href: "/staff-lab",
@@ -60,34 +60,16 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-5 py-20 md:py-28">
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-sm text-violet-200">
-            Free beta for music classrooms
+            Built by a national competition winner:
           </p>
 
           <h1 className="text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Music theory practice that actually feels built for students.
+            Music theory and practice — together, for every student.
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">
-            Audvyn is a free classroom platform for ear training, basic theory,
-            sight-reading, and staff-based teaching templates — built from a
-            student standpoint for music students and teachers.
+            OpenTutti is a completely free, rigorously designed platform covering ear training, theory, sight-reading, and teaching tools for every K12 classroom.
           </p>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/practice/ear-training"
-              className="rounded-full bg-violet-500 px-6 py-3 text-center font-medium text-white hover:bg-violet-400"
-            >
-              Try Ear Training
-            </Link>
-
-            <Link
-              href="/teacher"
-              className="rounded-full border border-white/15 px-6 py-3 text-center font-medium text-white hover:bg-white/10"
-            >
-              View Teacher Tools
-            </Link>
-          </div>
         </div>
 
         <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

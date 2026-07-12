@@ -62,7 +62,7 @@ export function createEmptyInputReadingAnalysis(
     id: `input-${Date.now()}`,
     sourceFileName,
     sourceType: "musicxml",
-    summary: "Audvyn created an empty Input Reading workspace for this MusicXML file.",
+    summary: "OpenTutti created an empty Input Reading workspace for this MusicXML file.",
     pageCount: 1,
     parts: [],
     systems: [],

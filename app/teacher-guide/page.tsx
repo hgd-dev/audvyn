@@ -7,27 +7,26 @@ export default function TeacherGuidePage() {
       </h1>
 
       <p className="mt-5 max-w-3xl leading-8 text-zinc-300">
-        Audvyn is a free beta platform for music theory, ear training,
-        sight-reading, and classroom practice. The current version is designed
-        for lightweight classroom testing, not district-wide deployment yet.
+        OpenTutti gives music teachers a simple way to create classes, assign
+        ear training and theory work, and review student progress from one
+        classroom dashboard.
       </p>
 
       <div className="mt-10 space-y-8">
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-2xl font-semibold">1. Create a teacher account</h2>
           <p className="mt-3 leading-8 text-zinc-400">
-            Go to the login page, choose “Sign up,” select “Teacher,” and create
-            your account. After signing in, you will be sent to the Teacher
-            Dashboard.
+            Open the Sign up page, select “Teacher,” and create your account.
+            After signing in, you will be sent to the Teacher Dashboard.
           </p>
         </section>
 
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-2xl font-semibold">2. Create a class</h2>
           <p className="mt-3 leading-8 text-zinc-400">
-            Open the Classes page from the teacher dashboard. Create a class
-            name such as “Period 3 Music Theory” or “Choir Ear Training.” Audvyn
-            will generate a class join code.
+            From the Teacher Dashboard, create a class name such as “Period 3
+            Music Theory” or “Choir Ear Training.” OpenTutti will generate a
+            class join code.
           </p>
         </section>
 
@@ -42,28 +41,17 @@ export default function TeacherGuidePage() {
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-2xl font-semibold">4. Create assignments</h2>
           <p className="mt-3 leading-8 text-zinc-400">
-            Open the Assignments page and choose an assignment type, mode, and
-            number of questions. The current beta supports Ear Training and
-            Theory assignments.
+            Use the Assignments tab in your class dashboard to choose an
+            assignment type, mode, number of questions, due time, and exercise
+            settings.
           </p>
         </section>
 
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-2xl font-semibold">5. Review results</h2>
           <p className="mt-3 leading-8 text-zinc-400">
-            After students complete assignments, the Assignments page shows
-            completion status, score, and completion time for each student.
-          </p>
-        </section>
-
-        <section className="rounded-3xl border border-yellow-400/30 bg-yellow-500/10 p-6">
-          <h2 className="text-2xl font-semibold text-yellow-100">
-            Beta note
-          </h2>
-          <p className="mt-3 leading-8 text-yellow-50/90">
-            Audvyn is currently in beta. Please avoid entering sensitive student
-            information. For testing, students can use first names, initials, or
-            classroom nicknames.
+            After students complete assignments, the dashboard shows completion
+            status, scores, averages, and per-student progress.
           </p>
         </section>
       </div>

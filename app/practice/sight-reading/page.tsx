@@ -6,11 +6,11 @@ export default function SightReadingPage() {
       <div className="mb-10">
         <p className="text-sm font-medium text-violet-300">Practice</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight">
-          Sightreading
+          Sight-reading
         </h1>
         <p className="mt-4 max-w-2xl leading-8 text-zinc-400">
           Generate staff-reading drills with clef, key, rhythm, range, and
-          playback tools for focused sightreading practice.
+          playback tools for focused sight-reading practice.
         </p>
       </div>
 

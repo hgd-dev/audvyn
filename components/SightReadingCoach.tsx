@@ -484,7 +484,7 @@ export default function SightReadingCoach() {
 
       <section className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-white/10 bg-zinc-950 p-5">
-          <h3 className="font-semibold text-white">Sightreading tips</h3>
+          <h3 className="font-semibold text-white">Sight-reading tips</h3>
           <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-zinc-400">
             {melody.tips.map((tip) => (
               <li key={tip}>{tip}</li>

@@ -2,15 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Music2 } from "lucide-react";
+import { ChevronDown, Music2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { Profile } from "@/types/database";
 
 const navItems = [
   { href: "/practice/ear-training", label: "Ear Training" },
   { href: "/practice/theory", label: "Theory" },
-  { href: "/practice/sight-reading", label: "Sightreading" },
-  { href: "/staff-lab", label: "AudvynLab" },
+  { href: "/practice/sight-reading", label: "Sight-reading" },
+  { href: "/staff-lab", label: "OTLab" },
+  { href: "/about", label: "About Us" },
+];
+
+const guideItems = [
+  { href: "/teacher-guide", label: "Teacher Guide" },
+  { href: "/student-guide", label: "Student Guide" },
 ];
 
 export default function SiteHeader() {
@@ -73,7 +79,7 @@ export default function SiteHeader() {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500">
             <Music2 className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xl font-semibold tracking-tight">Audvyn</span>
+          <span className="text-xl font-semibold tracking-tight">OpenTutti</span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
@@ -82,11 +88,28 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
+
+          <div className="group relative">
+            <button className="flex items-center gap-1 hover:text-white" type="button">
+              Guides <ChevronDown className="h-3.5 w-3.5" />
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-2xl border border-white/10 bg-zinc-950 p-2 opacity-0 shadow-2xl transition group-hover:visible group-hover:opacity-100">
+              {guideItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block rounded-xl px-4 py-3 text-sm text-zinc-300 hover:bg-white/[0.06] hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="flex items-center gap-3">
           {loading ? (
-            <div className="h-9 w-20 rounded-full border border-white/10 bg-white/[0.03]" />
+            <div className="h-9 w-32 rounded-full border border-white/10 bg-white/[0.03]" />
           ) : profile ? (
             <>
               <Link
@@ -104,12 +127,20 @@ export default function SiteHeader() {
               </button>
             </>
           ) : (
-            <Link
-              href="/login"
-              className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-100 hover:bg-white/10"
-            >
-              Log in
-            </Link>
+            <>
+              <Link
+                href="/signup"
+                className="rounded-full bg-violet-500 px-4 py-2 text-sm font-medium text-white hover:bg-violet-400"
+              >
+                Sign up
+              </Link>
+              <Link
+                href="/login"
+                className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-100 hover:bg-white/10"
+              >
+                Log In
+              </Link>
+            </>
           )}
         </div>
       </div>

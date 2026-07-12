@@ -4,9 +4,9 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Audvyn",
+  title: "OpenTutti",
   description:
-    "Free music theory, ear training, sight-reading, and classroom practice tools for students and teachers.",
+    "A completely free, rigorously designed platform covering ear training, theory, sight-reading, and teaching tools for every K12 classroom.",
 };
 
 export default function RootLayout({
