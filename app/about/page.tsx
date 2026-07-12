@@ -9,61 +9,18 @@ export default function AboutPage() {
       </h1>
 
       <p className="mt-5 max-w-3xl leading-8 text-zinc-300">
-        OpenTutti is a free music education platform for classrooms. It helps
-        students practice ear training, music theory, sight-reading, and
-        staff-based music skills through clear exercises, instant feedback, and
-        teacher-guided assignments.
+        OpenTutti is a free music education platform built to connect written theory with real listening and practice.
+        We believe music theory should not be memorized in isolation. Students should be able to hear it, recognize it, and use it in the music they perform.
+        <br />
+        Our mission is to make that kind of practical music learning accessible to every student.
+        <br />
+        <br />
+        Founded by a Musician and Student
+        <br />
+        Hudson Dong, Founder of OpenTutti, is a pianist, composer, and member of Stuyvesant High School's Class of 2027. He created OpenTutti after seeing how often music theory, ear training, and performance are taught as separate subjects.
+        Hudson is a 2026 YoungArts Winner in Classical Solo Piano and earned second place in the 2026 MTNA Eastern Division Senior Piano Competition. In 2025, he placed second nationally in the MTNA Junior Piano Competition and received the MTNA Ebony Award. He is also a multi-year winner in the New York MTNA Composition Competition and serves as Stuyvesant’s choral accompanist.
+        His work also extends into mathematics and computer science, with first-place finishes in New York City mathematics competitions, recognition in the MCM and M3 modeling competitions, and achievement in the USACO Gold division.
       </p>
-
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 className="text-2xl font-semibold">Why OpenTutti exists</h2>
-          <p className="mt-3 leading-8 text-zinc-400">
-            Music theory tools should be accessible, practical, and connected to
-            the way students actually learn. OpenTutti focuses on short
-            practice, immediate explanations, classroom workflows, and tools
-            that connect written theory to sound.
-          </p>
-        </section>
-
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 className="text-2xl font-semibold">Core tools</h2>
-          <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-zinc-400">
-            <li>Ear Training Gym</li>
-            <li>Theory Tester</li>
-            <li>Sight-Reading Coach</li>
-            <li>OpenTuttiLab staff workspace</li>
-            <li>Teacher classes and join codes</li>
-            <li>Assignments and student results</li>
-          </ul>
-        </section>
-
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 className="text-2xl font-semibold">Who it is for</h2>
-          <p className="mt-3 leading-8 text-zinc-400">
-            OpenTutti is built for music theory classes, choir, band, orchestra,
-            private studios, ear training practice, and students preparing for
-            more advanced theory work.
-          </p>
-        </section>
-
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 className="text-2xl font-semibold">Feedback</h2>
-          <p className="mt-3 leading-8 text-zinc-400">
-            OpenTutti improves through teacher and student feedback. If
-            something is confusing, inaccurate, missing, or useful, please send
-            feedback so the platform can continue to improve.
-          </p>
-          <a
-            href={siteConfig.feedbackUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-5 inline-flex rounded-full bg-violet-500 px-5 py-3 font-medium text-white hover:bg-violet-400"
-          >
-            Send feedback
-          </a>
-        </section>
-      </div>
     </section>
   );
 }

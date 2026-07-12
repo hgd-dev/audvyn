@@ -74,7 +74,13 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500">
-            <Music2 className="h-5 w-5 text-white" />
+            <Image
+              src="/opentutti-logo.png"
+              alt="OpenTutti logo"
+              width={36}
+              height={36}
+              className="h-full w-full object-cover"
+            />
           </div>
           <span className="text-xl font-semibold tracking-tight">OpenTutti</span>
         </Link>

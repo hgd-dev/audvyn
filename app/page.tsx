@@ -56,10 +56,16 @@ const features = [
 
 export default function Home() {
   return (
-    <section>
+    <section className="relative overflow-hidden">
+      {/* <div
+        className="absolute inset-0 -z-10 bg-cover bg-center opacity-30"
+        style={{ backgroundImage: "url('/home-banner.png')" }}
+      /> */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.25),transparent_35%),linear-gradient(to_bottom,#09090b,#18181b)]" />
+
       <div className="mx-auto max-w-7xl px-5 py-20 md:py-28">
-        <div className="max-w-3xl">
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-450">
+        <div className="max-w-5xl">
+          <p className="mt-0 max-w-2xl text-lg leading-8 text-slate-450 md:text-[17px]">
             Built by an award-winning musician and programmer
           </p>
 
