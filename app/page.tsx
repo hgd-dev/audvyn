@@ -18,7 +18,7 @@ const features = [
     icon: <AudioLines className="h-6 w-6" />,
   },
   {
-    title: "Theory Tester",
+    title: "Theory Tester Gym",
     description:
       "Build fluency with notes, key signatures, intervals, triads, Roman numerals, rhythm values, and more.",
     href: "/practice/theory",
@@ -32,7 +32,7 @@ const features = [
     icon: <Music className="h-6 w-6" />,
   },
   {
-    title: "OTLab",
+    title: "OpenTuttiLab",
     description:
       "Use simple staff-based templates for scales, intervals, chords, cadences, rhythm, and classroom demonstrations.",
     href: "/staff-lab",
@@ -59,12 +59,12 @@ export default function Home() {
     <section>
       <div className="mx-auto max-w-7xl px-5 py-20 md:py-28">
         <div className="max-w-3xl">
-          <p className="mb-5 inline-flex rounded-full border border-violet-400/30 bg-violet-400/10 px-4 py-2 text-sm text-violet-200">
-            Built by a national competition winner:
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-450">
+            Built by an award-winning musician and programmer
           </p>
 
           <h1 className="text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Music theory and practice — together, for every student.
+            Music theory and practice<br />together, for every student.
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">

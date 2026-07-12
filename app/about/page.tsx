@@ -32,7 +32,7 @@ export default function AboutPage() {
             <li>Ear Training Gym</li>
             <li>Theory Tester</li>
             <li>Sight-Reading Coach</li>
-            <li>OTLab staff workspace</li>
+            <li>OpenTuttiLab staff workspace</li>
             <li>Teacher classes and join codes</li>
             <li>Assignments and student results</li>
           </ul>

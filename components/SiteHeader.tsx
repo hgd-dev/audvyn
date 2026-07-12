@@ -5,18 +5,15 @@ import Link from "next/link";
 import { ChevronDown, Music2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { Profile } from "@/types/database";
-
+import Image from "next/image";
 const navItems = [
-  { href: "/practice/ear-training", label: "Ear Training" },
-  { href: "/practice/theory", label: "Theory" },
-  { href: "/practice/sight-reading", label: "Sight-reading" },
-  { href: "/staff-lab", label: "OTLab" },
   { href: "/about", label: "About Us" },
-];
-
-const guideItems = [
-  { href: "/teacher-guide", label: "Teacher Guide" },
+  { href: "/practice/ear-training", label: "Ear Training" },
+  { href: "/practice/theory", label: "Music Theory" },
+  { href: "/practice/sight-reading", label: "Sight-Reading" },
+  { href: "/staff-lab", label: "OpenTuttiLab" },
   { href: "/student-guide", label: "Student Guide" },
+  { href: "/teacher-guide", label: "Teacher Guide" },
 ];
 
 export default function SiteHeader() {
@@ -88,23 +85,6 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
-
-          <div className="group relative">
-            <button className="flex items-center gap-1 hover:text-white" type="button">
-              Guides <ChevronDown className="h-3.5 w-3.5" />
-            </button>
-            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-2xl border border-white/10 bg-zinc-950 p-2 opacity-0 shadow-2xl transition group-hover:visible group-hover:opacity-100">
-              {guideItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block rounded-xl px-4 py-3 text-sm text-zinc-300 hover:bg-white/[0.06] hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
         </nav>
 
         <div className="flex items-center gap-3">

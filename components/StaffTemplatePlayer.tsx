@@ -217,7 +217,7 @@ function measureMessage(notes: StaffNote[], insertionIndex: number, duration: St
 
   if (usedInMeasure + nextBeats > beatsPerMeasure + 0.001) {
     return autoJump
-      ? "That note would overflow this measure, so OTLab will visually continue into the next measure."
+      ? "That note would overflow this measure, so OpenTuttiLab will visually continue into the next measure."
       : "Heads up: that input overfills the current measure. Turn on auto-measure jumping or use a shorter duration.";
   }
 
@@ -511,7 +511,7 @@ export default function StaffTemplatePlayer() {
     <div className="space-y-6">
       <details open={templatesOpen} onToggle={(event) => setTemplatesOpen(event.currentTarget.open)} className="rounded-3xl border border-white/10 bg-white/[0.03] p-5">
         <summary className="cursor-pointer text-lg font-semibold text-white">Templates</summary>
-        <p className="mt-2 text-sm leading-6 text-zinc-400">Load a starter score, then edit it in OTLab. Descriptions appear only for the selected template.</p>
+        <p className="mt-2 text-sm leading-6 text-zinc-400">Load a starter score, then edit it in OpenTuttiLab. Descriptions appear only for the selected template.</p>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {staffTemplates.map((template) => (
             <button
@@ -532,7 +532,7 @@ export default function StaffTemplatePlayer() {
       <section className="min-w-0 rounded-3xl border border-white/10 bg-white/[0.03] p-5 md:p-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <p className="text-sm font-medium text-violet-300">OTLAB</p>
+            <p className="text-sm font-medium text-violet-300">OpenTuttiLab</p>
             <input value={score.title} onChange={(event) => setScoreField("title", event.target.value)} className="mt-3 w-full max-w-2xl bg-transparent text-3xl font-semibold tracking-tight text-white outline-none focus:text-violet-100" />
             <textarea value={score.description} onChange={(event) => setScoreField("description", event.target.value)} rows={2} className="mt-3 w-full max-w-3xl resize-none bg-transparent leading-7 text-zinc-400 outline-none focus:text-zinc-200" />
           </div>
