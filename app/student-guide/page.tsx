@@ -43,7 +43,7 @@ export default function StudentGuidePage() {
           <h2 className="text-2xl font-semibold">4. Practice freely</h2>
           <p className="mt-3 leading-8 text-zinc-400">
             You can also use the Ear Training Gym, Theory Tester, Sight-Reading
-            Coach, and OTLab outside of assignments.
+            Coach, and OpenTuttiLab outside of assignments.
           </p>
         </section>
 
@@ -52,7 +52,7 @@ export default function StudentGuidePage() {
             Practice tip
           </h2>
           <p className="mt-3 leading-8 text-violet-50/90">
-            Don’t just memorize answers. Read the explanation after every
+            Don't just memorize answers. Read the explanation after every
             question. The goal is to connect what you hear, what you see, and
             what the theory means.
           </p>
